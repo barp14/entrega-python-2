@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Nossos Produtos</h1>
+    
+    {% if latest_product_list %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for product in latest_product_list %}
+        <div class="col">
+            <div class="card h-100">
+                <img src="https://via.placeholder.com/400x300.png?text=Produto+{{ produto.id }}" class="card-img-top" alt="Imagem do produto {{ produto.nome }}">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ produto.nome }}</h5>
+                    <p class="card-text">{{ produto.descricao|truncatechars:100 }}</p>
+                    <div class="mt-auto">
+                        <span class="fs-4 fw-bold text-primary">R$ {{ produto.preco }}</span>
+                        <a href="{% url 'product_detail' produto.id %}" class="btn btn-primary d-block mt-2">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center mt-5">Nenhum produto disponível no momento.</p>
+    {% endif %}
+</div>
+{% endblock %}

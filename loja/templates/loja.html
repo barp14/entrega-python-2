@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Olá {{ usuario }}.
+{% endblock %}
+
+{% block body %}
+    <h1>Bem-vindo à Loja</h1>
+    <h2>{{titulo}}</h2>
+
+    {% if lista %}
+       {% for produto in lista %}
+            <h3>{{ produto.nome }}</h3>
+            <h4>R$: {{ produto.preco }}</h4>
+       {% endfor %}
+    {% else %}
+        <p>Não há produtos disponíveis.</p>
+    {% endif %}
+
+{% endblock %}
